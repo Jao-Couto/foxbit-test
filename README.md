@@ -1,2 +1,16 @@
 # Teste de admisão da Foxbit
-## Mars Rover Test
+
+Teste baseado no: `Mars Rover Test`
+
+## Instalação
+
+```
+npm install
+```
+
+## Testes:
+
+```
+npm install
+npm test
+```
