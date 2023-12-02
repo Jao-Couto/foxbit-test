@@ -8,9 +8,15 @@ Teste baseado no: `Mars Rover Test`
 npm install
 ```
 
+## Rodar o Projeto:
+
+```
+npm run build
+npm start
+```
+
 ## Testes:
 
 ```
-npm install
 npm test
 ```
