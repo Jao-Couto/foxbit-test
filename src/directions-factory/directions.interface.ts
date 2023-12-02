@@ -1,6 +1,6 @@
-import { Coordinate } from 'src/plateau/coordinate.interface';
-import { Plateau } from 'src/plateau/plateau';
-import { CardinalCompassPoints } from 'src/plateau/cardinal-compass-points.enum';
+import { Coordinate } from '../plateau/coordinate.interface';
+import { Plateau } from '../plateau/plateau';
+import { CardinalCompassPoints } from '../plateau/cardinal-compass-points.enum';
 
 export interface Directions {
 	currentDirection: CardinalCompassPoints;

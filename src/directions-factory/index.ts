@@ -1,4 +1,4 @@
-import { CardinalCompassPoints } from 'src/plateau/cardinal-compass-points.enum';
+import { CardinalCompassPoints } from '../plateau/cardinal-compass-points.enum';
 import { North } from './north';
 import { South } from './south';
 import { East } from './east';

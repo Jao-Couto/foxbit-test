@@ -1,7 +1,7 @@
-import { CardinalCompassPoints } from 'src/plateau/cardinal-compass-points.enum';
+import { CardinalCompassPoints } from '../plateau/cardinal-compass-points.enum';
 import { Directions } from './directions.interface';
-import { Plateau } from 'src/plateau/plateau';
-import { Coordinate } from 'src/plateau/coordinate.interface';
+import { Plateau } from '../plateau/plateau';
+import { Coordinate } from '../plateau/coordinate.interface';
 
 export class North implements Directions {
 	currentDirection: CardinalCompassPoints = CardinalCompassPoints.NORTH;
