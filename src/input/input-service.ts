@@ -16,29 +16,43 @@ export class InputService {
 
 	static getPlateau(plateauSizeLine: string): Plateau {
 		const plateauCoordinatesString = plateauSizeLine.split(' ');
+
 		if (plateauCoordinatesString.length !== 2) {
 			throw new Error(
 				'Plateau coordinates must be two numbers separated by a space'
 			);
 		}
-		try {
-			const plateauMaxCoordinates: Coordinate = {
-				x: parseInt(plateauCoordinatesString[0]),
-				y: parseInt(plateauCoordinatesString[1]),
-			};
-			const plateauMinCoordinates: Coordinate = {
-				x: 0,
-				y: 0,
-			};
-			return new Plateau(
-				plateauMinCoordinates.x,
-				plateauMinCoordinates.y,
-				plateauMaxCoordinates.x,
-				plateauMaxCoordinates.y
-			);
-		} catch (error) {
-			throw new Error('Plateau coordinates must be numbers');
-		}
+
+		const plateauMaxCoordinates: Coordinate = InputService.getCoordinatesNumber(
+			plateauCoordinatesString[0],
+			plateauCoordinatesString[1]
+		);
+
+		if (plateauMaxCoordinates.x < 0 || plateauMaxCoordinates.y < 0)
+			throw new Error('Plateau coordinates must be positive');
+
+		const plateauMinCoordinates: Coordinate = {
+			x: 0,
+			y: 0,
+		};
+		return new Plateau(
+			plateauMinCoordinates.x,
+			plateauMinCoordinates.y,
+			plateauMaxCoordinates.x,
+			plateauMaxCoordinates.y
+		);
+	}
+
+	static getCoordinatesNumber(stringX: string, stringY: string): Coordinate {
+		const coordinate: Coordinate = {
+			x: parseInt(stringX),
+			y: parseInt(stringY),
+		};
+
+		if (isNaN(coordinate.x) || isNaN(coordinate.y))
+			throw new Error('Coordinates must be numbers');
+
+		return coordinate;
 	}
 
 	static getRover(roverInitialPositionLine: string, plateau: Plateau): Rover {
@@ -71,22 +85,37 @@ export class InputService {
 				'Rover initial position must be two numbers separated by a space and a cardinal compass point'
 			);
 		}
-		try {
-			const roverInitialPosition: Coordinate = {
-				x: parseInt(roverInitialPositionString[0]),
-				y: parseInt(roverInitialPositionString[1]),
-			};
-			if (!plateau.isCoordinateInsidePlateau(roverInitialPosition)) {
-				throw new Error('Rover initial position must be inside the plateau');
-			}
-			const roverInitialDirection: CardinalCompassPoints =
-				roverInitialPositionString[2] as CardinalCompassPoints;
-			return {
-				initialPosition: roverInitialPosition,
-				initialDirection: roverInitialDirection,
-			};
-		} catch (error) {
-			throw new Error('Rover initial position must be numbers');
+
+		const roverInitialPosition: Coordinate = InputService.getCoordinatesNumber(
+			roverInitialPositionString[0],
+			roverInitialPositionString[1]
+		);
+		if (!plateau.isCoordinateInsidePlateau(roverInitialPosition)) {
+			throw new Error('Rover initial position must be inside the plateau');
+		}
+
+		const roverInitialDirection: CardinalCompassPoints =
+			InputService.getCardinalCompassPoint(roverInitialPositionString[2]);
+		return {
+			initialPosition: roverInitialPosition,
+			initialDirection: roverInitialDirection,
+		};
+	}
+
+	static getCardinalCompassPoint(cardinal: string): CardinalCompassPoints {
+		switch (cardinal) {
+			case 'N':
+				return CardinalCompassPoints.NORTH;
+			case 'E':
+				return CardinalCompassPoints.EAST;
+			case 'S':
+				return CardinalCompassPoints.SOUTH;
+			case 'W':
+				return CardinalCompassPoints.WEST;
+			default:
+				throw new Error(
+					'Rover initial direction must be a cardinal compass point'
+				);
 		}
 	}
 }
