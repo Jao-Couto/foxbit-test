@@ -3,7 +3,6 @@ import { Directions } from '../directions-factory/directions.interface';
 import { CardinalCompassPoints } from '../plateau/cardinal-compass-points.enum';
 import { Coordinate } from '../plateau/coordinate.interface';
 import { Plateau } from '../plateau/plateau';
-import { FinalState } from './final-state.interface';
 
 export class Rover {
 	private currentCoordinate: Coordinate;
@@ -18,7 +17,7 @@ export class Rover {
 		this.direction = directionsFactory(initialDirection);
 	}
 
-	execute(instructions: string): FinalState {
+	move(instructions: string): string {
 		const instructionsArray = instructions.split('');
 
 		instructionsArray.forEach((instruction) => {
@@ -39,13 +38,10 @@ export class Rover {
 					console.error('Invalid instruction');
 			}
 		});
-		return this.getFinalState();
+		return this.getPosition();
 	}
 
-	getFinalState(): FinalState {
-		return {
-			coordinate: this.currentCoordinate,
-			direction: this.direction.currentDirection,
-		};
+	getPosition(): string {
+		return `${this.currentCoordinate.x}${this.currentCoordinate.y}${this.direction.currentDirection}`;
 	}
 }
