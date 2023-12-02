@@ -6,7 +6,7 @@ describe('Rover', () => {
 	const mockPlateau = new Plateau(0, 0, 5, 5);
 
 	afterEach(() => {
-		jest.clearAllMocks();
+		jest.restoreAllMocks();
 	});
 
 	describe('move', () => {

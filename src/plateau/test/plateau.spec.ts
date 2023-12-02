@@ -2,8 +2,8 @@ import { Coordinate } from '../coordinate.interface';
 import { Plateau } from '../plateau';
 
 describe('Plateau', () => {
-	it('should be true', () => {
-		expect(true).toBe(true);
+	afterEach(() => {
+		jest.restoreAllMocks();
 	});
 
 	describe('constructor', () => {
