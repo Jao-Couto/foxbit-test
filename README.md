@@ -10,6 +10,8 @@ npm install
 
 ## Rodar o Projeto:
 
+O arquivo input.txt é a entrada dos dados, basta alterá-lo para executar com outros valores
+
 ```
 npm run build
 npm start

@@ -15,17 +15,17 @@ export class InputService {
 	}
 
 	static getPlateau(plateauSizeLine: string): Plateau {
-		const plateauCoordinatesString = plateauSizeLine.split(' ');
+		const plateauCoordinates = plateauSizeLine.split(' ');
 
-		if (plateauCoordinatesString.length !== 2) {
+		if (plateauCoordinates.length !== 2) {
 			throw new Error(
 				'Plateau coordinates must be two numbers separated by a space'
 			);
 		}
 
 		const plateauMaxCoordinates: Coordinate = InputService.getCoordinatesNumber(
-			plateauCoordinatesString[0],
-			plateauCoordinatesString[1]
+			plateauCoordinates[0],
+			plateauCoordinates[1]
 		);
 
 		if (plateauMaxCoordinates.x < 0 || plateauMaxCoordinates.y < 0)

@@ -96,7 +96,7 @@ describe('InputService', () => {
 			const rover: Rover = InputService.getRover('1 2 N', plateau);
 
 			expect(rover).toBeDefined();
-			expect(rover.getPosition()).toEqual('12N');
+			expect(rover.getPosition()).toEqual('1 2 N');
 		});
 	});
 

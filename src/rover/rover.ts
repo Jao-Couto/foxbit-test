@@ -35,13 +35,13 @@ export class Rover {
 					);
 					break;
 				default:
-					console.error('Invalid instruction');
+					throw new Error('Invalid instruction');
 			}
 		});
 		return this.getPosition();
 	}
 
 	getPosition(): string {
-		return `${this.currentCoordinate.x}${this.currentCoordinate.y}${this.direction.currentDirection}`;
+		return `${this.currentCoordinate.x} ${this.currentCoordinate.y} ${this.direction.currentDirection}`;
 	}
 }
